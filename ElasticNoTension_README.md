@@ -8,9 +8,9 @@ E: 	modulus of elasticity
 
 ### 2. Note
 
-This material is developed based on the OpenSees material 'Concrete01'.
+This material is developed based on the OpenSees material 'ElasticNoTension'.
 
-See more source code at OpenSees Github: https://github.com/OpenSees/OpenSees/blob/master/SRC/material/uniaxial/Concrete01.cpp 
+See more source code at OpenSees Github: https://github.com/OpenSees/OpenSees/blob/master/SRC/material/uniaxial/ENTMaterial.h
 
 ### 3. Typical stress-strain relation
 
