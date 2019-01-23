@@ -14,4 +14,4 @@ See more source code at OpenSees Github: https://github.com/OpenSees/OpenSees/bl
 
 ### 3. Typical stress-strain relation
 
-![ElasticNoTension](C:\Research\UBC MASc\Hybrid Simulation\Materials\ElasticNoTension.png)
+![ElasticNoTension](.\ElasticNoTension.png)
