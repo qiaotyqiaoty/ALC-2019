@@ -36,7 +36,9 @@ strainT = MatData(1,7);
 % state history variables
 stressC = MatData(1,8);
 strainC = MatData(1,9);
-
+strainCmin = MatData(1,10);
+strainCunload = MatData(1,11);
+strainCend = MatData(1,12);
 
 % Force all parameters negative
 if fpc > 0
@@ -52,6 +54,11 @@ if epscu > 0
     epscu = -epscu;
 end
 
+% Initial values
+Ec0 = 2*fpc/epsc;
+tangentC = Ec0;
+unloadSlopeC = Ec0;
+tangentT = Ec0;
 
 switch action
    % ======================================================================
@@ -60,6 +67,9 @@ switch action
        stressT = 0;
        strainC = 0;
        stressC = 0;
+       strainCmin = 0;
+       strainCunload = 0;
+       strainCend = 0;
        Result = 0;
        
    % ======================================================================
@@ -74,14 +84,35 @@ switch action
       
    % ======================================================================
    case 'getStrain'
-       Result = strainT;
+       if stressT >= 0
+           Result = strainT;
+       else
+
+       end
       
    % ======================================================================
    case 'getStress'
-       if strainT < 0
-           Result = E*strainT;
-       else
+       if strainT > 0
            Result = 0;
+       else
+           % determine trial variables given the change in strain
+           dStrain = strainT - strainC;
+           unloadSlopeT = unloadSlopeC;
+           stressTemp = stressC + unloadSlopeT*strainT - unloadSlopeT*strainC;
+           if strainT < strainC     % Goes further into compression
+               strainTmin = strainCmin;
+               strainTend = strainCend;
+               if stressTemp > stressT
+                   stressT = stressTemp;
+                   tengentT = unloadSlopeT;
+               end
+           elseif stressTemp <= 0
+               stressT = stressTemp;
+               tangentT = unloadSlopeT;
+           else
+               stressT = 0;
+               tangentT = 0;
+           end
        end
       
    % ======================================================================
