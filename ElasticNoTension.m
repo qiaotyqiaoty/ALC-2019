@@ -44,7 +44,7 @@ switch action
    case 'setTrialStrain'
        strainT = edp;
        Result = 0;  
-        
+
    % ======================================================================
    case 'setTrialStress'
        stressT = edp;
@@ -75,7 +75,7 @@ switch action
        if strainT < 0
            Result = E;
        else
-           Result = 1e10*1/E;  % Take 10^10*(1/E) as infinity
+           Result = 0;
        end
       
    % ======================================================================

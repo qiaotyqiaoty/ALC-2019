@@ -38,19 +38,8 @@ stressC = MatData(1,8);
 strainC = MatData(1,9);
 
 
-% Force all parameters negative
-if fpc > 0
-    fpc = -fpc;
-end
-if epsc > 0
-    epsc = -epsc;
-end
-if fpcu > 0
-    fpcu = -fpcu;
-end
-if epscu > 0
-    epscu = -epscu;
-end
+% Make all parameters nagetive
+
 
 
 switch action
@@ -58,8 +47,6 @@ switch action
    case 'initialize'
        strainT = 0;
        stressT = 0;
-       strainC = 0;
-       stressC = 0;
        Result = 0;
        
    % ======================================================================
@@ -119,12 +106,6 @@ end
 MatData(1,1) = tag;      % unique material tag
 MatData(1,2) = fpc;
 MatData(1,3) = epsc;
-MatData(1,4) = fpcu;
-MatData(1,5) = epscu;
-% trial variables
-MatData(1,6) = stressT;
-MatData(1,7) = strainT;
-% state history variables
-MatData(1,8) = stressC;
-MatData(1,9) = strainC;
+MatData(1,4) = strainT;
+
 end
